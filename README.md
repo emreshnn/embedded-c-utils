@@ -13,6 +13,18 @@ cross-compiled for ARM Cortex-M4 on every push.
 | [`mempool`](include/mempool.h) | Fixed-size block allocator, O(1) alloc | Message buffers without `malloc` |
 | [`fsm`](include/fsm.h) | Table-driven state machine | System modes, protocol handlers |
 
+### Footprint
+
+Cortex-M4, Thumb, `-Os`, arm-none-eabi-gcc 14.2 (from the [CI](.github/workflows/ci.yml) log):
+
+| Module | Flash (bytes) | RAM (bytes) |
+|---|---:|---:|
+| crc | 100 | 0 |
+| fsm | 72 | 0 |
+| mempool | 148 | 0 |
+| ringbuf | 112 | 0 |
+| **Total** | **432** | **0** |
+
 ## Design decisions
 
 - **No heap.** All memory is supplied by the caller, so usage is known at link time.
